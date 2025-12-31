@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import userImg from '../assets/profile-blank.png';
 import { FaGoogle } from 'react-icons/fa';
 
@@ -20,9 +20,9 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-x-2">
         <img className="w-[50px] rounded-full" src={userImg} alt="" />
-        <div className="btn bg-black text-white px-10">Login</div>
+        <Link to={'/auth/login'} className="btn bg-black text-white px-10">Login</Link>
         <div className="btn bg-black text-white px-5">
-          <FaGoogle className='mr-1' /> Login With Google
+          <FaGoogle className="mr-1" /> Login With Google
         </div>
       </div>
     </div>

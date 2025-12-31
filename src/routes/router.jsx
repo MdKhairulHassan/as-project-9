@@ -3,6 +3,9 @@ import { createBrowserRouter } from 'react-router';
 import HomeLayout from '../layouts/HomeLayout';
 import Home from '../pages/Home';
 import CategoryPlants from '../pages/CategoryPlants';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
+import AuthLayout from '../layouts/AuthLayout';
 
 const router = createBrowserRouter([
   {
@@ -16,12 +19,23 @@ const router = createBrowserRouter([
       {
         path: '/category/:id',
         element: <CategoryPlants></CategoryPlants>,
+        loader: () => fetch('/plants.json'),
       },
     ],
   },
   {
     path: '/auth',
-    element: <h2>Authentication layout</h2>,
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: '/auth/login',
+        element: <Login></Login>,
+      },
+      {
+        path: '/auth/register',
+        element: <Register></Register>,
+      },
+    ],
   },
   {
     path: '/plants',

@@ -21,14 +21,13 @@ const HomeLayout = () => {
           <Banner></Banner>
         </section>
       </header>
-      <main>
-        <aside className=''>
+      <main className="w-11/12 mx-auto my-3 grid grid-cols-12 gap-5">
+        <aside className="col-span-3 sticky top-0 h-fit">
           <LeftAside></LeftAside>
         </aside>
-        <section className="main">
+        <section className="main col-span-9">
           <Outlet></Outlet>
         </section>
-        <section className="right_nav"></section>
       </main>
     </div>
   );
