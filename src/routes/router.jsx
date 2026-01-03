@@ -6,6 +6,12 @@ import CategoryPlants from '../pages/CategoryPlants';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AuthLayout from '../layouts/AuthLayout';
+import PlantsDetails from '../pages/PlantsDetails';
+import PrivateRoute from '../provider/PrivateRoute';
+import Loading from '../pages/Loading';
+import Plants from '../pages/Plants';
+import MyProfile from '../pages/MyProfile';
+import ProfilesLayout from '../layouts/ProfilesLayout';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +26,7 @@ const router = createBrowserRouter([
         path: '/category/:id',
         element: <CategoryPlants></CategoryPlants>,
         loader: () => fetch('/plants.json'),
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },
@@ -38,8 +45,28 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/plants-details/:id',
+    element: (
+      <PrivateRoute>
+        <PlantsDetails></PlantsDetails>
+      </PrivateRoute>
+    ),
+    loader: () => fetch('/plants.json'),
+    hydrateFallbackElement: <Loading></Loading>,
+  },
+  {
     path: '/plants',
-    element: <h2>plants layout</h2>,
+    element: <Plants></Plants>,
+  },
+  {
+    path: '/profiles',
+    element: <ProfilesLayout></ProfilesLayout>,
+    children: [
+      {
+        path: '/profiles/myprofile',
+        element: <MyProfile></MyProfile>,
+      },
+    ],
   },
   {
     path: '/*',

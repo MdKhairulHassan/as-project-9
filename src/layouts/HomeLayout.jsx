@@ -1,16 +1,19 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Header from '../components/Header';
 import LatestMotto from '../components/LatestMotto';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import LeftAside from '../components/homelayout/LeftAside';
+import Loading from '../pages/Loading';
 
 const HomeLayout = () => {
+  const { state } = useNavigation();
   return (
     <div>
       <header>
         <Header></Header>
+        {/* {(import.meta.env.VITE_name)} */}
         <section className="w-11/12 mx-auto my-3">
           <LatestMotto></LatestMotto>
         </section>
@@ -26,7 +29,7 @@ const HomeLayout = () => {
           <LeftAside></LeftAside>
         </aside>
         <section className="main col-span-9">
-          <Outlet></Outlet>
+          {state == 'loading' ? <Loading></Loading> : <Outlet></Outlet>}
         </section>
       </main>
     </div>

@@ -1,7 +1,9 @@
 import { FaStar, FaLeaf, FaShoppingCart, FaStore } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const PlantsCard = ({ plants }) => {
   const {
+    plantId,
     plantName,
     category,
     price,
@@ -37,9 +39,12 @@ const PlantsCard = ({ plants }) => {
           {description.length > 50 ? (
             <>
               {description.slice(0, 50)}...{' '}
-              <span className="font-bold text-red-600 cursor-pointer">
+              <Link
+                to={`/plants-details/${plantId}`}
+                className="font-bold text-red-600 cursor-pointer"
+              >
                 More Details
-              </span>
+              </Link>
             </>
           ) : (
             description
@@ -66,7 +71,13 @@ const PlantsCard = ({ plants }) => {
 
         {/* Actions */}
         <div className="card-actions mt-4">
-          <button className="btn btn-success btn-sm w-full">
+          <Link
+            to={`/plants-details/${plantId}`}
+            className="btn btn-success btn-sm w-full"
+          >
+            View Details
+          </Link>
+          <button className="btn bg-gray-300 text-gray-600 btn-sm w-full cursor-not-allowed">
             <FaShoppingCart />
             Add to Cart
           </button>
