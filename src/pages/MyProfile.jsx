@@ -1,8 +1,11 @@
 import React, { use } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
+import { Link, useLocation } from 'react-router';
 
 const MyProfile = () => {
   const { user, setUser, updateUser } = use(AuthContext);
+
+  const location = useLocation();
 
   const handleUpdateProfile = e => {
     e.preventDefault();
@@ -62,6 +65,7 @@ const MyProfile = () => {
               // value={user.name}
               placeholder="Name"
               className="w-full border rounded-lg px-3 py-2 bg-gray-100"
+              required
             />
           </div>
 
@@ -74,10 +78,35 @@ const MyProfile = () => {
               type="text"
               placeholder="Photo URL"
               className="w-full border rounded-lg px-3 py-2 bg-gray-100"
+              required
             />
           </div>
 
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-4 flex-col">
+            <div className="text-center mb-1">
+              {!user && (
+                <p className="font-semibold">
+                  Please{' '}
+                  <Link
+                    state={location.pathname}
+                    to={'/auth/login'}
+                    className="text-red-500 font-bold"
+                  >
+                    Login{' '}
+                  </Link>
+                  or
+                  <Link
+                    state={location.pathname}
+                    to={'/auth/register'}
+                    className="text-red-500 font-bold"
+                  >
+                    {' '}
+                    Register
+                  </Link>{' '}
+                  First To Update
+                </p>
+              )}
+            </div>
             <button className="btn btn-accent" type="submit" disabled={!user}>
               Update
             </button>

@@ -5,7 +5,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, googleSignIn } = use(AuthContext);
   const handleLogOut = () => {
     console.log('user trying to logout');
     logOut()
@@ -16,6 +16,20 @@ const Navbar = () => {
         console.log(error);
       });
   };
+
+  const handleGoogleSignIn = () => {
+    // console.log('google button clicked');
+    googleSignIn()
+      .then(result => {
+        const user = result.user;
+        // console.log(result.user);
+      })
+      .catch(error => {
+        const err = error;
+        // console.log(error);
+      });
+  };
+
   return (
     <div className="flex justify-between items-center">
       <div>{user && user.email}</div>
@@ -50,7 +64,10 @@ const Navbar = () => {
             <Link to={'/auth/login'} className="btn bg-black text-white px-10">
               Login
             </Link>
-            <div className="btn bg-black text-white px-5">
+            <div
+              className="btn bg-black text-white px-5"
+              onClick={handleGoogleSignIn}
+            >
               <FaGoogle className="mr-1" /> Login With Google
             </div>
           </>
