@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,15 +6,17 @@ import { FaRegEye } from 'react-icons/fa';
 import { LuEyeClosed } from 'react-icons/lu';
 
 const Login = () => {
-  const { signIn } = use(AuthContext);
+  const { signIn, forgetPassword } = use(AuthContext);
 
   const [error, setError] = useState('');
+  const [forgetPasswordError, setForgetPasswordError] = useState('');
   const [success, setSuccess] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const emailRef = useRef();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,6 +76,33 @@ const Login = () => {
       });
   };
 
+  const handleForgetPassword = e => {
+    e.preventDefault();
+
+    const email = emailRef.current?.value;
+
+    if (!email) {
+      toast.error('Please enter your email first', {
+        theme: 'colored',
+      });
+      return;
+    }
+
+    forgetPassword(email)
+      .then(() => {
+        // console.log('please check your email');
+        setForgetPasswordError('');
+        toast.success('please check your email', {
+          theme: 'colored',
+        });
+      })
+      .catch(error => {
+        // console.error(error);
+        setForgetPasswordError(error.message);
+        toast.error(error.message, { theme: 'colored' });
+      });
+  };
+
   const handleTogglePasswordShow = e => {
     e.preventDefault();
     setShowPassword(!showPassword);
@@ -94,6 +123,7 @@ const Login = () => {
               type="email"
               className="input"
               placeholder="Email"
+              ref={emailRef}
               required
             />
             {emailError && (
@@ -125,8 +155,18 @@ const Login = () => {
             )}
 
             <div>
-              <a className="link link-hover font-bold">Forgot password?</a>
+              <button
+                type="button"
+                className="link link-hover font-bold"
+                onClick={handleForgetPassword}
+              >
+                Forgot password?
+              </button>
             </div>
+
+            {forgetPasswordError && (
+              <p className="text-red-400 text-xs">{forgetPasswordError}</p>
+            )}
 
             <button type="submit" className="btn btn-neutral mt-4">
               Login
