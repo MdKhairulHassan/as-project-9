@@ -3,31 +3,38 @@ import { Link, NavLink } from 'react-router';
 import userImg from '../assets/profile-blank.png';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Navbar = () => {
   const { user, logOut, googleSignIn } = use(AuthContext);
   const handleLogOut = () => {
-    console.log('user trying to logout');
+    // console.log('user trying to logout');
     logOut()
       .then(() => {
-        alert('You Logged Out successfully');
+        // alert('You Logged Out successfully');
+        toast.success('You Logged Out successfully', {
+          theme: 'dark',
+        });
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
+        toast.error(error, {
+          theme: 'colored',
+        });
       });
   };
 
   const handleGoogleSignIn = () => {
     // console.log('google button clicked');
-    googleSignIn()
-      .then(result => {
-        const user = result.user;
-        // console.log(result.user);
-      })
-      .catch(error => {
-        const err = error;
-        // console.log(error);
-      });
+    googleSignIn().then().catch();
+    // .then(result => {
+    //   const user = result.user;
+    //   // console.log(result.user);
+    // })
+    // .catch(error => {
+    //   const err = error;
+    //   // console.log(error);
+    // });
   };
 
   return (
@@ -45,6 +52,7 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="flex items-center gap-x-2">
+        <ToastContainer />
         <img
           className="w-[50px] rounded-full"
           src={`${user ? user.photoURL : userImg}`}

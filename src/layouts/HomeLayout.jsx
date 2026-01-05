@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import LeftAside from '../components/homelayout/LeftAside';
 import Loading from '../pages/Loading';
+import Footer from '../components/Footer';
 
 const HomeLayout = () => {
   const { state } = useNavigation();
@@ -24,7 +25,7 @@ const HomeLayout = () => {
           <Banner></Banner>
         </section>
       </header>
-      <main className="w-11/12 mx-auto my-3 grid grid-cols-12 gap-5">
+      <main className="w-11/12 mx-auto my-3 grid grid-cols-12 gap-5 my-20">
         <aside className="col-span-3 sticky top-0 h-fit">
           <LeftAside></LeftAside>
         </aside>
@@ -32,6 +33,9 @@ const HomeLayout = () => {
           {state == 'loading' ? <Loading></Loading> : <Outlet></Outlet>}
         </section>
       </main>
+      <div>
+        <Footer></Footer>
+      </div>
     </div>
   );
 };
