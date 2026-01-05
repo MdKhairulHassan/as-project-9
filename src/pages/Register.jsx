@@ -2,24 +2,32 @@ import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaRegEye } from 'react-icons/fa';
+import { LuEyeClosed } from 'react-icons/lu';
 
 const Register = () => {
   const { createUser, setUser, updateUser } = use(AuthContext);
 
   const [nameError, setNameError] = useState('');
   const [success, setSuccess] = useState(false);
-  const [fail, setFail] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [fail, setFail] = useState('');
 
   const navigate = useNavigate();
 
   const handleRegister = e => {
     e.preventDefault();
     setSuccess(false);
-    setFail(false);
+    setFail('');
+
     // console.log(e.target);
+
     const form = e.target;
     const name = form.name.value;
 
+    // for name requirement
     if (name.length < 5) {
       setNameError('Name should be more than 5 character');
       return;
@@ -27,18 +35,31 @@ const Register = () => {
       setNameError('');
     }
 
-    // =====================================
-    // if (name.length < 5) {
-    //   setNameError('Name should be more than 5 character');
-    //   return;
-    // } else {
-    //   setNameError('');
-    // }
-    // =====================================
-
     const photo = form.photo.value;
     const email = form.email.value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError(true);
+      return;
+    } else {
+      setEmailError(false);
+    }
+
     const password = form.password.value;
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{6,}$/;
+    // passwordRegex.test('Abcdef1!'); // true
+
+    // for password requirement
+    if (!passwordRegex.test(password)) {
+      setPasswordError(true);
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
     // console.log({ name, photo, email, password });
     createUser(email, password)
       .then(result => {
@@ -47,6 +68,7 @@ const Register = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
+            form.reset();
             navigate('/');
           })
           .catch(error => {
@@ -62,16 +84,22 @@ const Register = () => {
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode);
+        // console.log(errorCode);
         // alert(errorMessage);
         setSuccess(false);
-        setFail(true);
+        setFail(errorCode);
         toast.error(errorMessage, {
-          theme: 'dark',
+          theme: 'colored',
         });
         // ..
       });
   };
+
+  const handleTogglePasswordShow = e => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <div className="flex justify-center min-h-screen items-center">
@@ -112,16 +140,34 @@ const Register = () => {
                 placeholder="Email"
                 required
               />
+              {emailError && (
+                <p className={'text-xs text-error'}>Email is not valid</p>
+              )}
 
               {/* Password */}
               <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-                required
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  type={`${showPassword ? 'text' : 'password'}`}
+                  className="input"
+                  placeholder="Password"
+                  required
+                />
+                <button
+                  className="p-2 cursor-pointer btn-xs absolute top-2 right-5"
+                  onClick={handleTogglePasswordShow}
+                >
+                  {showPassword ? <FaRegEye /> : <LuEyeClosed />}
+                </button>
+              </div>
+
+              {passwordError && (
+                <p className={'text-xs text-error'}>
+                  Must have an Uppercase, Lowercase letter and Length must be at
+                  least 6 character
+                </p>
+              )}
 
               <button type="submit" className="btn btn-neutral mt-4">
                 Register
@@ -134,7 +180,9 @@ const Register = () => {
               )}
 
               {fail && (
-                <p className="text-xs text-error">account create fail</p>
+                <p className="text-xs text-error">
+                  account create fail: {fail}
+                </p>
               )}
 
               <p className="text-center font-medium text-sm">
