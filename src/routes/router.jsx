@@ -57,7 +57,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/plant_of_the_Week',
-    element: <PlantOfTheWeek></PlantOfTheWeek>,
+    element: (
+      <PrivateRoute>
+        <PlantOfTheWeek></PlantOfTheWeek>
+      </PrivateRoute>
+    ),
     loader: () => fetch('/plantoftheweek.json'),
     hydrateFallbackElement: <Loading></Loading>,
   },
@@ -79,7 +83,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/*',
-    element: <h2>error 404</h2>,
+    element: <h2 className='font-bold text-center text-5xl pt-60'>error 404</h2>,
   },
 ]);
 
