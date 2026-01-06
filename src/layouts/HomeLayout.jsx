@@ -3,13 +3,13 @@ import { Outlet, useNavigation } from 'react-router';
 import Header from '../components/Header';
 import LatestMotto from '../components/LatestMotto';
 import Navbar from '../components/Navbar';
-import Banner from '../components/Banner';
 import LeftAside from '../components/homelayout/LeftAside';
 import Loading from '../pages/Loading';
 import Footer from '../components/Footer';
 import PlantCareTips from '../components/homelayout/PlantCareTips';
 import GreenExpertsCard from '../components/homelayout/GreenExpertsCard';
 import { FaLeaf } from 'react-icons/fa';
+import BannerSlider from '../components/homelayout/BannerSlider';
 
 const HomeLayout = () => {
   const { state } = useNavigation();
@@ -24,9 +24,9 @@ const HomeLayout = () => {
         <nav className="w-11/12 mx-auto my-3">
           <Navbar></Navbar>
         </nav>
-        <section className="bg-[url('/bannerimg.png')] bg-cover bg-center my-7">
-          <Banner></Banner>
-        </section>
+        <div>
+          <BannerSlider></BannerSlider>
+        </div>
       </header>
       <section className="mt-30">
         <div className="text-center mt-20 mb-10">
@@ -34,7 +34,9 @@ const HomeLayout = () => {
             <FaLeaf className="text-green-600" />
             Top Rated Indoor Plants
           </h2>
-          <p className="text-gray-600 mt-2">Our top collected plants are here</p>
+          <p className="text-gray-600 mt-2">
+            Our top collected plants are here with category wise
+          </p>
         </div>
       </section>
       <main className="w-11/12 mx-auto grid grid-cols-12 gap-5 mt-14 mb-20">
