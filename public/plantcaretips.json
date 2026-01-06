@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": "Watering Tips",
+    "icon": "water",
+    "tips": [
+      "Water indoor plants only when the top inch of soil feels dry.",
+      "Avoid overwatering as it can lead to root rot.",
+      "Use room-temperature water to prevent plant shock.",
+      "Ensure pots have proper drainage holes.",
+      "Reduce watering frequency during winter months.",
+      "Succulent plants require less frequent watering.",
+      "Empty excess water from saucers after watering.",
+      "Water early in the morning for best absorption.",
+      "Different plants have different watering needs.",
+      "Always check soil moisture before watering."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Sunlight Tips",
+    "icon": "sun",
+    "tips": [
+      "Most indoor plants thrive in bright indirect sunlight.",
+      "Avoid placing plants in direct harsh afternoon sun.",
+      "Rotate plants weekly for even growth.",
+      "Low-light plants can survive in shaded rooms.",
+      "South-facing windows provide the most light.",
+      "Use sheer curtains to filter strong sunlight.",
+      "Observe leaf color changes to adjust light levels.",
+      "Artificial grow lights can supplement natural light.",
+      "Clean leaves regularly to improve light absorption.",
+      "Seasonal sunlight changes may affect plant health."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Fertilizing Tips",
+    "icon": "leaf",
+    "tips": [
+      "Fertilize plants during their active growing season.",
+      "Avoid fertilizing newly repotted plants immediately.",
+      "Use balanced liquid fertilizer for indoor plants.",
+      "Over-fertilizing can burn plant roots.",
+      "Dilute fertilizer to half strength for safety.",
+      "Reduce fertilizing during winter dormancy.",
+      "Organic fertilizers improve long-term soil health.",
+      "Follow fertilizer instructions carefully.",
+      "Yellow leaves may indicate nutrient deficiency.",
+      "Flush soil occasionally to remove salt buildup."
+    ]
+  }
+]

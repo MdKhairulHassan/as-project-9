@@ -26,9 +26,10 @@ const PlantsDetails = () => {
           <PlantsDetailsCard plants={plants}></PlantsDetailsCard>
           <Link
             to={`/category/${plants.category_id}`}
-            className="btn ml-7 font-bold"
+            className="btn ml-7 font-bold bg-amber-400"
           >
-            <FaArrowLeftLong /> Back
+            <FaArrowLeftLong />
+            Similar Category Plants Only
           </Link>
         </section>
       </main>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import PlantsCard from '../components/PlantsCard';
+import { FaLeaf } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { FaLeaf } from 'react-icons/fa';
-import PlantsCard from '../components/PlantsCard';
 
-const Plants = () => {
+const PlantOfTheWeek = () => {
   const data = useLoaderData();
   return (
-    <div>
+    <>
       <header className="w-11/12 mx-auto py-4">
         <Navbar></Navbar>
       </header>
@@ -16,9 +16,9 @@ const Plants = () => {
         <div className="text-center mt-20 mb-10">
           <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2">
             <FaLeaf className="text-green-600" />
-            All Plants
+            Plant Of The Week
           </h2>
-          <p className="text-gray-600 mt-2">Our all collected plants are here</p>
+          <p className="text-gray-600 mt-2">The popular plants for this week</p>
         </div>
         <div className="grid grid-cols-4 gap-5 mt-7 mb-20">
           {data.map(plants => (
@@ -29,8 +29,8 @@ const Plants = () => {
       <div>
         <Footer></Footer>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Plants;
+export default PlantOfTheWeek;

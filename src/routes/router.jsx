@@ -12,6 +12,7 @@ import Loading from '../pages/Loading';
 import Plants from '../pages/Plants';
 import MyProfile from '../pages/MyProfile';
 import ProfilesLayout from '../layouts/ProfilesLayout';
+import PlantOfTheWeek from '../pages/PlantOfTheWeek';
 
 const router = createBrowserRouter([
   {
@@ -51,12 +52,20 @@ const router = createBrowserRouter([
         <PlantsDetails></PlantsDetails>
       </PrivateRoute>
     ),
-    loader: () => fetch('/plants.json'),
+    loader: () => fetch('/allplantsdata.json'),
+    hydrateFallbackElement: <Loading></Loading>,
+  },
+  {
+    path: '/plant_of_the_Week',
+    element: <PlantOfTheWeek></PlantOfTheWeek>,
+    loader: () => fetch('/plantoftheweek.json'),
     hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: '/plants',
     element: <Plants></Plants>,
+    loader: () => fetch('/allplantsdata.json'),
+    hydrateFallbackElement: <Loading></Loading>,
   },
   {
     path: '/profiles',

@@ -1,18 +1,15 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import { FaLeaf } from 'react-icons/fa';
 
 const Header = () => {
   return (
     <div className="flex justify-center flex-col">
-      <div className="flex justify-center items-center gap-x-2">
-        <img className="w-[100px]" src={logo} alt="" />
-        <div>
-          <p className="font-bold text-6xl">
-            GreenNest
-            <br />
-          </p>
-          <p className="font-medium text-lg pl-2">Indoor Plant Care & Store</p>
-        </div>
+      <div className="text-center mb-7 mt-5">
+        <h2 className="text-6xl font-bold text-green-700 flex justify-center items-center gap-2">
+          <FaLeaf className="text-green-600" />
+          GreenNest
+        </h2>
+        <p className="font-medium text-lg pl-2">Indoor Plant Care & Store</p>
       </div>
     </div>
   );

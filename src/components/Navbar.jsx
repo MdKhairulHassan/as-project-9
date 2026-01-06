@@ -44,6 +44,9 @@ const Navbar = () => {
         <NavLink className={'hover:font-bold'} to={'/'}>
           Home
         </NavLink>
+        <NavLink className={'hover:font-bold'} to={'/plant_of_the_Week'}>
+          Plant Of The Week
+        </NavLink>
         <NavLink className={'hover:font-bold'} to={'/plants'}>
           Plants
         </NavLink>
