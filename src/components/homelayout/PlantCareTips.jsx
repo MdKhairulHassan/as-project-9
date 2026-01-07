@@ -9,11 +9,13 @@ const PlantCareTips = () => {
   return (
     <div>
       <div className="text-center mt-20 mb-10">
-        <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2">
+        <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2 max-[420px]:text-2xl">
           <FaLeaf className="text-green-600" />
           Plant Care Tips
         </h2>
-        <p className="text-gray-600 mt-2">Best plant care tips from us</p>
+        <p className="text-gray-600 mt-2 max-[420px]:text-sm">
+          Best plant care tips from us
+        </p>
       </div>
       <div className="grid grid-cols-3 gap-3 mt-5 max-sm:grid-cols-1">
         {plantCareTips.map(tip => (

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 const Banner = () => {
   return (
     <div className="w-11/12 mx-auto py-40">
-      <p className="text-7xl font-semibold pt-1">
+      <p className="text-7xl font-semibold pt-1  max-[420px]:text-4xl">
         Best house <br /> plants varieties.
       </p>
       <div className="mt-7">

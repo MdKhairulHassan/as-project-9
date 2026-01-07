@@ -16,7 +16,9 @@ const HomeLayout = () => {
   return (
     <div>
       <header>
-        <Header></Header>
+        <div>
+          <Header></Header>
+        </div>
         {/* {(import.meta.env.VITE_name)} */}
         <section className="w-11/12 mx-auto my-3">
           <LatestMotto></LatestMotto>
@@ -30,17 +32,17 @@ const HomeLayout = () => {
       </header>
       <section className="mt-30">
         <div className="text-center mt-20 mb-10">
-          <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2">
+          <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2  max-[420px]:text-2xl">
             <FaLeaf className="text-green-600" />
             Top Rated Indoor Plants
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2  max-[420px]:text-sm">
             Our top collected plants are here with category wise
           </p>
         </div>
       </section>
-      <main className="w-11/12 mx-auto grid grid-cols-12 gap-5 mt-14 mb-20">
-        <aside className="col-span-3 sticky top-0 h-fit">
+      <main className="w-11/12 mx-auto grid grid-cols-12 max-[420px]:grid-cols-1 gap-5 mt-14 mb-20">
+        <aside className="col-span-3 sticky top-0 h-fit max-[420px]:static max-[420px]:h-auto">
           <LeftAside></LeftAside>
         </aside>
         <section className="main col-span-9">

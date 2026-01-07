@@ -22,7 +22,7 @@ const Plants = () => {
             Our all collected plants are here
           </p>
         </div>
-        <div className="grid grid-cols-4 gap-5 mt-7 mb-20 max-sm:grid-cols-2 max-md:grid-cols-3">
+        <div className="gap-5 mt-7 mb-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map(plants => (
             <PlantsCard key={plants.plantId} plants={plants}></PlantsCard>
           ))}

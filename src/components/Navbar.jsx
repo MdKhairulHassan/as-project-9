@@ -122,7 +122,7 @@ const Navbar = () => {
 
           <div>
             <p
-              className={`bg-sky-300 py-2 px-3 rounded-sm font-bold ${
+              className={`bg-sky-300 py-2 px-3 rounded-sm font-bold max-[420px]:hidden ${
                 user || 'hidden'
               }`}
             >
@@ -138,7 +138,7 @@ const Navbar = () => {
               <img
                 className="w-12 rounded-full"
                 src={`${user ? user.photoURL : userImg}`}
-                alt=""
+                alt="profile-picture"
               />
             </Link>
             {linksAuth}
@@ -149,7 +149,7 @@ const Navbar = () => {
             <img
               className="w-12 rounded-full"
               src={`${user ? user.photoURL : userImg}`}
-              alt=""
+              alt="profile-picture"
             />
           </Link>
         </div>

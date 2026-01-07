@@ -17,12 +17,12 @@ const GreenExpertsCard = () => {
     <section className="py-14 bg-base-100">
       <div className="max-w-6xl mx-auto px-4">
         {/* Section Title */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2">
+        <div className="text-center mt-20 mb-10">
+          <h2 className="text-3xl font-bold text-green-700 flex justify-center items-center gap-2 max-[420px]:text-2xl">
             <FaLeaf className="text-green-600" />
             Meet Our Green Experts
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2  max-[420px]:text-sm">
             Trusted professionals guiding you to healthier indoor plants
           </p>
         </div>
