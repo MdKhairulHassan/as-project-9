@@ -18,8 +18,8 @@ const MyProfile = () => {
         setUser({ ...user, displayName: name, photoURL: photo });
         form.reset();
       })
-      .catch(error => {
-        console.log(error);
+      .catch(() => {
+        // console.log(error);
         setUser(user);
       });
   };

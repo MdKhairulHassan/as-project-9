@@ -17,7 +17,7 @@ const CategoryPlants = () => {
       return;
     }
     const filteredPlants = data.filter(plants => plants.category_id == id);
-    console.log(filteredPlants);
+    // console.log(filteredPlants);
     setCategoryPlants(filteredPlants);
   }, [data, id]);
   return (
