@@ -122,7 +122,7 @@ const Navbar = () => {
 
           <div>
             <p
-              className={`bg-sky-300 py-2 px-3 rounded-sm font-bold max-[420px]:hidden ${
+              className={`bg-green-400 py-2 px-3 rounded-sm font-bold max-[420px]:hidden ${
                 user || 'hidden'
               }`}
             >
