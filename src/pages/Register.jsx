@@ -71,8 +71,8 @@ const Register = () => {
             form.reset();
             navigate('/');
           })
-          .catch(error => {
-            console.log(error);
+          .catch(() => {
+            // console.log(error);
             setUser(user);
           });
         setUser(user);

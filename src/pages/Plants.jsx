@@ -18,9 +18,11 @@ const Plants = () => {
             <FaLeaf className="text-green-600" />
             All Plants
           </h2>
-          <p className="text-gray-600 mt-2">Our all collected plants are here</p>
+          <p className="text-gray-600 mt-2">
+            Our all collected plants are here
+          </p>
         </div>
-        <div className="grid grid-cols-4 gap-5 mt-7 mb-20">
+        <div className="grid grid-cols-4 gap-5 mt-7 mb-20 max-sm:grid-cols-2 max-md:grid-cols-3">
           {data.map(plants => (
             <PlantsCard key={plants.plantId} plants={plants}></PlantsCard>
           ))}

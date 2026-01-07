@@ -67,7 +67,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/plants',
-    element: <Plants></Plants>,
+    element: (
+      <PrivateRoute>
+        <Plants></Plants>
+      </PrivateRoute>
+    ),
     loader: () => fetch('/allplantsdata.json'),
     hydrateFallbackElement: <Loading></Loading>,
   },
@@ -77,13 +81,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/profiles/myprofile',
-        element: <MyProfile></MyProfile>,
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
     path: '/*',
-    element: <h2 className='font-bold text-center text-5xl pt-60'>error 404</h2>,
+    element: (
+      <h2 className="font-bold text-center text-5xl pt-60">error 404</h2>
+    ),
   },
 ]);
 

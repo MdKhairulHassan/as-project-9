@@ -15,7 +15,7 @@ const PlantCareTips = () => {
         </h2>
         <p className="text-gray-600 mt-2">Best plant care tips from us</p>
       </div>
-      <div className="grid grid-cols-3 gap-3 mt-5">
+      <div className="grid grid-cols-3 gap-3 mt-5 max-sm:grid-cols-1">
         {plantCareTips.map(tip => (
           <PlantCareCard key={tip.id} tip={tip} />
         ))}

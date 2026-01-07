@@ -26,7 +26,7 @@ const CategoryPlants = () => {
         Total <span className="text-red-600">({categoryPlants.length}) </span>
         Plants
       </h2>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
         {categoryPlants.map(plants => (
           <PlantsCard key={plants.plantId} plants={plants}></PlantsCard>
         ))}

@@ -18,12 +18,14 @@ const PlantCareCard = ({ tip }) => {
           <h2 className="card-title text-green-700">{title}</h2>
         </div>
 
-        {/* Tips List */}
-        <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
-          {tips.slice(0, 5).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
+        <div className="h-50">
+          {/* Tips List */}
+          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+            {tips.slice(0, 5).map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
 
         {/* Optional Action */}
         <div className="card-actions mt-4 justify-end">

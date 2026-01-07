@@ -4,6 +4,7 @@ import userImg from '../assets/profile-blank.png';
 import { AuthContext } from '../provider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
+import { TiThMenu } from 'react-icons/ti';
 
 const Navbar = () => {
   const { user, logOut, googleSignIn } = use(AuthContext);
@@ -43,76 +44,117 @@ const Navbar = () => {
     // });
   };
 
-  return (
-    <div className="flex justify-between items-center">
-      <div>
-        <p
-          className={`bg-sky-300 py-2 px-3 rounded-sm font-bold ${
-            user || 'hidden'
-          }`}
+  const linksPage = (
+    <>
+      <NavLink className={'hover:font-bold text-lg'} to={'/'}>
+        Home
+      </NavLink>
+      {user && (
+        <NavLink
+          className={'hover:font-bold text-lg'}
+          to={'/plant_of_the_Week'}
         >
-          {user && `Email: ${user.email}`}
-        </p>
-      </div>
-      <div className="flex gap-x-5">
-        <NavLink className={'hover:font-bold'} to={'/'}>
-          Home
-        </NavLink>
-        {user && (
-          <NavLink className={'hover:font-bold'} to={'/plant_of_the_Week'}>
-            Plant Of The Week
-          </NavLink>
-        )}
-        {/* <NavLink className={'hover:font-bold'} to={'/plant_of_the_Week'}>
           Plant Of The Week
-        </NavLink> */}
-        <NavLink className={'hover:font-bold'} to={'/plants'}>
-          Plants
         </NavLink>
-        <NavLink className={'hover:font-bold'} to={'/profiles/myprofile'}>
-          My profile
-        </NavLink>
+      )}
+      <NavLink className={'hover:font-bold text-lg'} to={'/plants'}>
+        Plants
+      </NavLink>
+      <NavLink className={'hover:font-bold text-lg'} to={'/profiles/myprofile'}>
+        My profile
+      </NavLink>
+    </>
+  );
+
+  const linksAuth = (
+    <>
+      {user ? (
+        <>
+          <button
+            onClick={handleLogOut}
+            className="btn bg-black text-white px-10"
+          >
+            LogOut
+          </button>
+        </>
+      ) : (
+        <>
+          <Link
+            to={'/auth/login'}
+            className="py-2 bg-black text-white px-5 rounded-sm my-1"
+          >
+            Login
+          </Link>
+          <Link
+            to={'/auth/register'}
+            className="py-2 bg-black text-white px-5 rounded-sm my-1"
+          >
+            Register
+          </Link>
+          <Link
+            className="py-2 bg-black text-white px-2 rounded-sm flex items-center my-1"
+            onClick={handleGoogleSignIn}
+          >
+            <FcGoogle className="mr-1 inline-block my-1" />{' '}
+            <p className="inline-block">Login With Google</p>
+          </Link>
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <>
+      <div className="navbar p-0">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <TiThMenu className="text-2xl" />
+            </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            >
+              {linksPage}
+              {linksAuth}
+            </ul>
+          </div>
+
+          <div>
+            <p
+              className={`bg-sky-300 py-2 px-3 rounded-sm font-bold ${
+                user || 'hidden'
+              }`}
+            >
+              {user && `Email: ${user.email}`}
+            </p>
+          </div>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-x-5">{linksPage}</ul>
+          <div className="flex items-center gap-x-2">
+            <ToastContainer />
+            <Link to={'/profiles/myprofile'}>
+              <img
+                className="w-12 rounded-full"
+                src={`${user ? user.photoURL : userImg}`}
+                alt=""
+              />
+            </Link>
+            {linksAuth}
+          </div>
+        </div>
+        <div className="lg:hidden max-sm:navbar-end max-md:navbar-end max-lg:navbar-end">
+          <Link to={'/profiles/myprofile'}>
+            <img
+              className="w-12 rounded-full"
+              src={`${user ? user.photoURL : userImg}`}
+              alt=""
+            />
+          </Link>
+        </div>
       </div>
-      <div className="flex items-center gap-x-2">
-        <ToastContainer />
-        <img
-          className="w-[50px] rounded-full"
-          src={`${user ? user.photoURL : userImg}`}
-          alt=""
-        />
-        {user ? (
-          <>
-            <button
-              onClick={handleLogOut}
-              className="btn bg-black text-white px-10"
-            >
-              LogOut
-            </button>
-          </>
-        ) : (
-          <>
-            <Link
-              to={'/auth/login'}
-              className="py-2 bg-black text-white px-5 rounded-sm"
-            >
-              Login
-            </Link>
-            <Link
-              to={'/auth/register'}
-              className="py-2 bg-black text-white px-5 rounded-sm"
-            >
-              Register
-            </Link>
-            <Link
-              className="py-2 bg-black text-white px-5 rounded-sm"
-              onClick={handleGoogleSignIn}
-            >
-              <FcGoogle className="mr-1 inline-block" /> Login With Google
-            </Link>
-          </>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
