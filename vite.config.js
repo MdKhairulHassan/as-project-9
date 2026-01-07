@@ -18,6 +18,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: '/', // ensures correct paths on Vercel
   build: {
+    outDir: 'dist',
     rollupOptions: {
       output: {
         manualChunks: {
