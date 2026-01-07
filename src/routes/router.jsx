@@ -120,7 +120,7 @@ const Plants = lazy(() => import('../pages/Plants'));
 const MyProfile = lazy(() => import('../pages/MyProfile'));
 const PlantOfTheWeek = lazy(() => import('../pages/PlantOfTheWeek'));
 
-// Helper for suspense
+// Suspense wrapper
 const withSuspense = Component => (
   <Suspense fallback={<Loading />}>
     <Component />

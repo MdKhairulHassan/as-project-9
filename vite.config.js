@@ -16,6 +16,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: '/', // ensures correct paths on Vercel
   build: {
     rollupOptions: {
       output: {
